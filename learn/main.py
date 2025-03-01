@@ -11,10 +11,8 @@ class Concircle(Scene):
         square.rotate(PI/4)
 
         self.play(Create(square))
-        self.play(Transform
-                  (
-                      square, circle
-                  ))
+        self.play(Transform(square, circle))
+        self.play(FadeOut(square))
         
-
+        
     
