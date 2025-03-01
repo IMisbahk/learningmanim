@@ -8,11 +8,12 @@ class Concircle(Scene):
 
         square = Square()
         square.set_fill(BLUE, opacity=0.5)
-        square.rotate(PI/4)
 
+        square.next_to(circle, direction=LEFT, buff=1)
+
+        self.play(Create(circle))
+        self.wait(0.2)
         self.play(Create(square))
-        self.play(Transform(square, circle))
-        self.play(FadeOut(square))
-        
-        
-    
+
+        self.play(square.animate.shift(2*UP))
+        self.play(circle.animate.shift(2*LEFT))
