@@ -1,21 +1,27 @@
 from manim import *
 
-class MorphingShapes(Scene):
+class SquareToCube(ThreeDScene):
     def construct(self):
-        square = Square(color=BLUE, fill_opacity=0.6)
-        circle = Circle(color=GREEN, fill_opacity=0.6)
-        star = Star(n=5, color=RED, fill_opacity=0.6)
 
-        text = Text("Morphing Shapes").scale(0.7).shift(UP*2)
+        self.set_camera_orientation(phi=0 * DEGREES, theta=-90 * DEGREES)
 
-        
-        self.play(Write(text))
+
+        Axes = ThreeDAxes()
+        self.add(Axes)
+        square = Square(color=BLUE, fill_opacity=0.5)
         self.play(Create(square))
         self.wait(1)
-        self.play(Transform(square, circle))
-        self.wait(1)
-        self.play(Transform(square, star))
+
+        self.move_camera(phi=60 * DEGREES, theta=-45 * DEGREES, run_time=2)
         self.wait(1)
 
-        self.play(FadeOut(square), FadeOut(text))
-        self.wait()
+        cube = Cube(color=BLUE, fill_opacity=0.3)
+        self.play(Transform(square, cube))
+
+        self.play(
+            cube.animate.scale(0.5),
+            run_time=2
+        )
+
+        self.wait(2)
+        ##ahash
